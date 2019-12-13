@@ -4,13 +4,14 @@ import CampaignTable from './CampaignTable';
 import '../css/component.css';
 import AppHeader from './AppHeader';
 import moment from 'moment';
-
+import lang from './language/language';
 
 export default class App extends React.Component {
     state = {
         upcomingList: [],
         liveList: [],
-        pastList: []
+        pastList: [],
+        selectedLang:  lang.en
     }
     createData = () => {
         let live = [];
@@ -100,34 +101,46 @@ export default class App extends React.Component {
     onPastChangeDate = (unixdate, rowId) => {
         this.updateList('pastList', unixdate, rowId);
     }
-    
+    onLangChange = (e) => {
+        // console.log((e.target.value));
+        let selectedLang = e.target.value;
+        this.setState({
+            selectedLang: lang[selectedLang]
+        });
+        
+    }
     render() {
         let upcomingList = this.state.upcomingList;
         let liveList = this.state.liveList;
         let pastList = this.state.pastList;
-
+        let selectedLang = this.state.selectedLang;
         return(
             <div>
-                <AppHeader />
+                <AppHeader 
+                    onLangChange = {this.onLangChange}
+                />
                 <div className="content-container">
-                <h2 className="sub-heading">Manage Campaigns</h2>
+                <h2 className="sub-heading">{selectedLang.screenHeader}</h2>
                 <Tabs defaultActiveKey="upcomingCampaigns" id="uncontrolled-tab-example" className="width-98">
-                    <Tab eventKey="upcomingCampaigns" title="Upcoming Campaigns">
+                    <Tab eventKey="upcomingCampaigns" title={selectedLang.upcomingCampaign}>
                         <CampaignTable 
                             list={upcomingList}
                             onChangeDate={this.onUpcomingChangeDate}
+                            selectedLang = {selectedLang}
                         />
                     </Tab>
-                    <Tab eventKey="liveCampaign" title="Live Campaigns">
+                    <Tab eventKey="liveCampaign" title={selectedLang.liveCampaign}>
                         <CampaignTable 
                                 list={liveList}
                                 onChangeDate={this.onLiveChangeDate}
+                                selectedLang = {selectedLang}
                             />
                     </Tab>
-                    <Tab eventKey="pastCampaigns" title="Past Campaigns">
+                    <Tab eventKey="pastCampaigns" title={selectedLang.pastCampaign}>
                         <CampaignTable 
                                 list={pastList}
                                 onChangeDate={this.onPastChangeDate}
+                                selectedLang = {selectedLang}
                             />
                     </Tab>
                 </Tabs>

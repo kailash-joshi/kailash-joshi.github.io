@@ -35,7 +35,7 @@ export default class GridRow extends React.Component {
 
     }
     render(){
-        const {row} = this.props;
+        const {row,selectedLang} = this.props;
         return(
             row ? <tr>
                 <td>
@@ -55,15 +55,16 @@ export default class GridRow extends React.Component {
                         price = {row.price}
                         name = {row.name}
                         region = {row.region}
+                        selectedLang={selectedLang}
                     />
                 </td>
                 <td className="td-img-icon">
                     <img src = {file} alt="csv logo"/>
-                    <Button variant='link' onClick={this.downloadFile}>CSV</Button>
+                    <Button variant='link' onClick={this.downloadFile}>{selectedLang.csv}</Button>
                 </td>
                 <td className="td-img-icon">
                     <img src = {statisticsReport} alt="report logo" />
-                    <Button variant='link' onClick={this.downloadReport}>Report</Button>
+                    <Button variant='link' onClick={this.downloadReport}>{selectedLang.report}</Button>
                 </td>
                 <td className="td-img-icon">
                     <img src = {calendar} alt="calendar logo"/>

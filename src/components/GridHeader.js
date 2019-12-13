@@ -4,10 +4,10 @@ export default class GridHeader extends React.Component {
         return(
             <thead>
                 <tr>
-                <th>DATE</th>
-                <th>CAMPAIGN</th>
-                <th>VIEW</th>
-                <th>ACTIONS</th>
+                <th>{this.props.selectedLang.date}</th>
+                <th>{this.props.selectedLang.campaign}</th>
+                <th>{this.props.selectedLang.view}</th>
+                <th>{this.props.selectedLang.actions}</th>
                 <th></th>
                 <th></th>
                 </tr>

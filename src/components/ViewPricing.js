@@ -15,7 +15,7 @@ const ViewPricing = (props) => {
       <>
         <img src={Price} alt="price logo"/>
         <Button variant="link" onClick={handleShow}>
-            View Pricing
+            {props.selectedLang.viewPricing}
         </Button>
         <Modal show={show} onHide={handleClose}>
             <Modal.Title></Modal.Title>
@@ -30,22 +30,22 @@ const ViewPricing = (props) => {
               </div>
             </div>
             <div className="row modal-heading-text">
-              <h4>Pricing</h4>
+              <h4>{props.selectedLang.Pricing}</h4>
             </div>
             <div className="row">
-              <div className="col-6 div-week-text">1 Week - 1 Month</div>
+              <div className="col-6 div-week-text">{`1 ${props.selectedLang.Week} - 1 ${props.selectedLang.Month}`}</div>
               <div className="col-6 div-week-value">${price}</div>
             </div>
             <div className="row">
-              <div className="col-6 div-week-text">6 Months</div>
+              <div className="col-6 div-week-text">{`6 ${props.selectedLang.Month}`}</div>
               <div className="col-6 div-week-value">${price * 5}</div>
             </div>
             <div className="row">
-              <div className="col-6 div-week-text">1 Year</div>
+              <div className="col-6 div-week-text">{`1 ${props.selectedLang.Year}`}</div>
               <div className="col-6 div-week-value">${price * 12}</div>
             </div>
             <div class="col-12 text-center">
-              <Button className="view-pricing-modal-btn" onClick={handleClose}>Close</Button>
+              <Button className="view-pricing-modal-btn" onClick={handleClose}>{props.selectedLang.Close}</Button>
             </div>
           </Modal.Body>
         </Modal>

@@ -8,14 +8,15 @@ export default class CampaignTable extends React.Component {
         super();
     }
     render(){
-        const {list} = this.props;
+        const {list,selectedLang} = this.props;
         return (
             list? <div>
                 <Table className="tbl-css width-98" responsive>
-                    <GridHeader />
+                    <GridHeader selectedLang={selectedLang}/>
                     <GridRowList 
                         list={list}
                         onChangeDate={this.props.onChangeDate}
+                        selectedLang={selectedLang}
                     />
                 </Table>
             </div> : null

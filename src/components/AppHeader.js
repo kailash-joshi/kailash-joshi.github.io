@@ -1,6 +1,7 @@
 import React from 'react';
+import { tsPropertySignature } from '../../node_modules/@babel/types';
 
-const AppHeader = () => {
+const AppHeader = (props) => {
     return(
         <div>
             <header className="main-header relative blue-opaque">
@@ -10,6 +11,10 @@ const AppHeader = () => {
                     </a>
                 </div>
             </header>
+            <select onChange={e=>props.onLangChange(e)}>
+                    <option value='en' selected>English</option>
+                    <option value='ge'>German</option>
+            </select>
         </div>
     )
 }
